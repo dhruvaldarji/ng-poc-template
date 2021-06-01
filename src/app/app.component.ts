@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, VERSION } from '@angular/core';
 
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -18,6 +18,8 @@ export class AppComponent implements OnInit, OnDestroy {
   appName$ = this.appService.getAppName();
   appSubtitle$ = this.appService.getAppSubtitle();
   appInstructions$ = this.appService.getAppInstructions();
+
+  NG_VERSION = `v${VERSION.major}`;
 
   private readonly destroy$ = new Subject();
 
