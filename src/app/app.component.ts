@@ -13,13 +13,13 @@ import { ThemeService } from './services/theme.service';
 })
 export class AppComponent implements OnInit, OnDestroy {
 
-  appTheme$ = this.themeService.getAppTheme();
+  readonly appTheme$ = this.themeService.getAppTheme();
 
-  appName$ = this.appService.getAppName();
-  appSubtitle$ = this.appService.getAppSubtitle();
-  appInstructions$ = this.appService.getAppInstructions();
+  readonly appName$ = this.appService.getAppName();
+  readonly appSubtitle$ = this.appService.getAppDescription();
+  readonly appInstructions$ = this.appService.getAppInstructions();
 
-  NG_VERSION = `v${VERSION.major}`;
+  readonly NG_VERSION = `v${VERSION.major}`;
 
   private readonly destroy$ = new Subject();
 
@@ -27,6 +27,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.themeService.setTheme().pipe(takeUntil(this.destroy$)).subscribe();
+
+    this.appService.setAppName(/** [ Add your instructions here ] **/);
+    this.appService.setAppDescription(/** [ Add your instructions here ] **/);
+    this.appService.setAppInstructions(/** [ Add your instructions here ] **/);
   }
 
   ngOnDestroy() {
